@@ -72,9 +72,22 @@
 			echo $q;
 			echo "</pre>";
 		}
+		$queryes = insert_table_q($jsonAttr, $val[1]);
+
+		foreach ($queryes as $key => $value) {
+			if ($mysqli->query($value) === TRUE) {
+				echo "Add to ".$val[1]." succesfully!!!<br>";
+			} else {
+				echo "Error creating table: " . $mysqli->error."<br>";
+				echo "<pre>";
+				echo $value;
+				echo "</pre>";
+			}
+		}
 		// echo '<pre style="color: #f00;">';
-		// print_r($max[1]);
+		// print_r($queryes);
 		// echo '</pre>';
+
 	}
 
 	function create_table_q($arr, $tblName) {
@@ -87,8 +100,21 @@
 		return $q;
 	}
 
-	function insert_table_q($arr) {
-
+	function insert_table_q($arr, $tblName) {
+		foreach ($arr as $key => $value) {
+			$q = "INSERT INTO `".$tblName."` ";
+			$keys = "(";
+			$vals = "VALUES(";
+			foreach ($value as $k => $v) {
+				$keys .= "`".$k."`,";
+				$vals .= "'".$v."',";
+			}
+			$keys = substr($keys, 0, -1).")";
+			$vals = substr($vals, 0, -1).")";
+			$q .= $keys.$vals;
+			$r[] = $q;
+		}
+		return $r;
 	}
 
 	function check_max_attr($arr) {
