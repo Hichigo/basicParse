@@ -9,6 +9,8 @@
 		echo "MySQL ok!";
 	}
 
+
+	echo !in_array("needle", Array()).'<br><br>';
 	// $q = "CREATE TABLE Persons(PersonID int unique auto_increment, LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255))";
 
 	// if ($mysqli->query($q) === TRUE) {
@@ -36,6 +38,7 @@
 		$nFiles = count($files);
 		$max = 0;
 
+
 		$queryes = Array();
 
 		for($i = 2; $i < $nFiles; $i++) {
@@ -43,10 +46,12 @@
 			$jsonAttr = json_decode(fread($f, filesize($path.'\\'.$files[$i])));
 			fclose($f);
 			$t = check_max_attr($jsonAttr);
-			if ($t > $max) {
-				$max = $t;
-			}
-
+			// if ($t > $max) {
+			// 	$max = $t;
+			// }
+			echo "<pre>";
+			echo $t;
+			echo "</pre>";
 			
 			foreach ($jsonAttr as $key => $value) { //составляем запросы
 				$q = "INSERT INTO `".$val[1]."` ";
@@ -62,28 +67,30 @@
 				$queryes[] = $q;
 			}
 		}
-		$q = create_table_q($max, $val[1]);
 
-		if ($mysqli->query($q) === TRUE) {
-			echo "Table MyGuests created successfully<br>";
-		} else {
-			echo "Error creating table: " . $mysqli->error."<br>";
-			echo "<pre>";
-			echo $q;
-			echo "</pre>";
-		}
-		$queryes = insert_table_q($jsonAttr, $val[1]);
+		// $q = create_table_q($max, $val[1]);
 
-		foreach ($queryes as $key => $value) {
-			if ($mysqli->query($value) === TRUE) {
-				echo "Add to ".$val[1]." succesfully!!!<br>";
-			} else {
-				echo "Error creating table: " . $mysqli->error."<br>";
-				echo "<pre>";
-				echo $value;
-				echo "</pre>";
-			}
-		}
+		// if ($mysqli->query($q) === TRUE) {
+		// 	echo "Table MyGuests created successfully<br>";
+		// } else {
+		// 	echo "Error creating table: " . $mysqli->error."<br>";
+		// 	echo "<pre>";
+		// 	echo $q;
+		// 	echo "</pre>";
+		// }
+		// $queryes = insert_table_q($jsonAttr, $val[1]);
+
+		// foreach ($queryes as $key => $value) {
+		// 	if ($mysqli->query($value) === TRUE) {
+		// 		echo "Add to ".$val[1]." succesfully!!!<br>";
+		// 	} else {
+		// 		echo "Error creating table: " . $mysqli->error."<br>";
+		// 		echo "<pre>";
+		// 		echo $value;
+		// 		echo "</pre>";
+		// 	}
+		// }
+
 		// echo '<pre style="color: #f00;">';
 		// print_r($queryes);
 		// echo '</pre>';
@@ -117,13 +124,14 @@
 		return $r;
 	}
 
-	function check_max_attr($arr) {
-		$max = 0;
+	function check_max_attr($arr) { // переписать для сбора всех возможных полей
+		$r = Array();
 		foreach ($arr as $k => $v) {
-			$n = count((array)$v);
-			if($n > $max) {
-				$r[0] = $v;
-				$r[1] = $n;
+			foreach ($v as $key => $val) {
+				echo !in_array($key, $r);
+				if(!in_array($key, $r)) {
+					$r[] = $key;
+				}
 			}
 		}
 		return $r;
