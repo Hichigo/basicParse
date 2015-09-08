@@ -47,6 +47,7 @@
 				$max = $t;
 			}
 
+			
 			foreach ($jsonAttr as $key => $value) { //составляем запросы
 				$q = "INSERT INTO `".$val[1]."` ";
 				$col = "(";
@@ -60,17 +61,38 @@
 				$q .= $col.$colVal;
 				$queryes[] = $q;
 			}
-			echo '<pre style="color: #f00;">';
-			print_r($queryes);
-			echo '</pre>';
+		}
+		$q = create_table_q($max, $val[1]);
+
+		if ($mysqli->query($q) === TRUE) {
+			echo "Table MyGuests created successfully<br>";
+		} else {
+			echo "Error creating table: " . $mysqli->error."<br>";
+			echo $q."<br><br>";
 		}
 		// echo '<pre style="color: #f00;">';
 		// print_r($max[1]);
 		// echo '</pre>';
 	}
 
-	function create_table_q($arr) {
+	function create_table_q($arr, $tblName) {
+		$q = "CREATE TABLE IF NOT EXISTS ".$tblName."(id int unique auto_increment,";
 
+		foreach ($arr[0] as $key => $value) { // fix this xD
+			$k = str_replace(" ", "_", $key);
+			$k = str_replace("-", "_", $k);
+			$k = str_replace("(", "_", $k);
+			$k = str_replace(")", "", $k);
+			$k = str_replace("+", "", $k);
+			$k = str_replace(".", "_", $k);
+			$k = str_replace(",", "_", $k);
+			$k = str_replace("/", "_", $k);
+			$k = str_replace("\\", "_", $k);
+			$k = str_replace("\"", "_", $k);
+			$q .= $k." TEXT,";
+		}
+		$q = substr($q, 0, -1).")";
+		return $q;
 	}
 
 	function insert_table_q($arr) {
