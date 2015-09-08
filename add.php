@@ -40,56 +40,48 @@
 
 
 		$queryes = Array();
-
+		$r = Array();
 		for($i = 2; $i < $nFiles; $i++) {
 			$f = fopen($path.'\\'.$files[$i], 'rb');
 			$jsonAttr = json_decode(fread($f, filesize($path.'\\'.$files[$i])));
 			fclose($f);
-			$t = check_max_attr($jsonAttr);
-			// if ($t > $max) {
-			// 	$max = $t;
-			// }
-			echo "<pre>";
-			echo $t;
-			echo "</pre>";
 			
-			foreach ($jsonAttr as $key => $value) { //составляем запросы
-				$q = "INSERT INTO `".$val[1]."` ";
-				$col = "(";
-				$colVal = "VALUES (";
-				foreach ($value as $k => $v) {
-					$col .= $k.",";
-					$colVal .= "'".$v."',";
+
+			// выбираем все возможные имена колонок для каждой таблицы
+			foreach ($jsonAttr as $jsk => $jsv) { // где то ошибка КАВЫЧКИ
+				foreach ($jsv as $kjs => $vjs) {
+					if(!in_array($kjs, $r)) {
+						$r[] = $kjs;
+					}
 				}
-				$col = substr($col, 0, -1).")";
-				$colVal = substr($colVal, 0, -1).")";
-				$q .= $col.$colVal;
-				$queryes[] = $q;
 			}
+			// echo $val[1]."<pre>";
+			// print_r($r);
+			// echo "</pre>";
+		}
+		$q = create_table_q($r, $val[1], $mysqli);
+		
+		if ($mysqli->query($q) === TRUE) {
+			echo "Table MyGuests created successfully<br>";
+		} else {
+			echo "Error creating table: " . $mysqli->error."<br>";
+			echo "<pre>";
+			echo $q;
+			echo "</pre>";
 		}
 
-		// $q = create_table_q($max, $val[1]);
+		$queryes = insert_table_q($jsonAttr, $val[1], $mysqli); // запросы для добавления в бд
 
-		// if ($mysqli->query($q) === TRUE) {
-		// 	echo "Table MyGuests created successfully<br>";
-		// } else {
-		// 	echo "Error creating table: " . $mysqli->error."<br>";
-		// 	echo "<pre>";
-		// 	echo $q;
-		// 	echo "</pre>";
-		// }
-		// $queryes = insert_table_q($jsonAttr, $val[1]);
-
-		// foreach ($queryes as $key => $value) {
-		// 	if ($mysqli->query($value) === TRUE) {
-		// 		echo "Add to ".$val[1]." succesfully!!!<br>";
-		// 	} else {
-		// 		echo "Error creating table: " . $mysqli->error."<br>";
-		// 		echo "<pre>";
-		// 		echo $value;
-		// 		echo "</pre>";
-		// 	}
-		// }
+		foreach ($queryes as $key => $value) { //добавление в бд
+			if ($mysqli->query($value) === TRUE) {
+				echo "Add to ".$val[1]." succesfully!!!<br>";
+			} else {
+				echo "Error creating table: " . $mysqli->error."<br>";
+				echo "<pre>";
+				echo $value;
+				echo "</pre>";
+			}
+		}
 
 		// echo '<pre style="color: #f00;">';
 		// print_r($queryes);
@@ -97,24 +89,24 @@
 
 	}
 
-	function create_table_q($arr, $tblName) {
-		$q = "CREATE TABLE IF NOT EXISTS ".$tblName."(id int unique auto_increment,";
+	function create_table_q($arr, $tblName, $msql) {
+		$q = "CREATE TABLE IF NOT EXISTS ".$tblName."(id int unique auto_increment,"; //
 
-		foreach ($arr[0] as $key => $value) {
-			$q .= "`".$key."`"." TEXT,\n";
+		foreach ($arr as $key => $value) {
+			$q .= "`".$value."`"." TEXT,";
 		}
-		$q = substr($q, 0, -2).")";
+		$q = substr($q, 0, -1).")";
 		return $q;
 	}
 
-	function insert_table_q($arr, $tblName) {
+	function insert_table_q($arr, $tblName, $msql) {
 		foreach ($arr as $key => $value) {
 			$q = "INSERT INTO `".$tblName."` ";
 			$keys = "(";
 			$vals = "VALUES(";
 			foreach ($value as $k => $v) {
 				$keys .= "`".$k."`,";
-				$vals .= "'".$v."',";
+				$vals .= "'".$msql->real_escape_string($v)."',";
 			}
 			$keys = substr($keys, 0, -1).")";
 			$vals = substr($vals, 0, -1).")";
@@ -136,4 +128,3 @@
 		}
 		return $r;
 	}
-
