@@ -18,14 +18,14 @@
 	// }
 
 	$dataPath = Array(
-			Array('C:\\OpenServer\\domains\parse.my\\', 'cpu'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'video'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'psu'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'hull'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'motherboard'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'hdd'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'culling'),
-			Array('C:\\OpenServer\\domains\parse.my\\', 'ram')
+			Array('.\\', 'cpu'),
+			Array('.\\', 'video'),
+			Array('.\\', 'psu'),
+			Array('.\\', 'hull'),
+			Array('.\\', 'motherboard'),
+			Array('.\\', 'hdd'),
+			Array('.\\', 'culling'),
+			Array('.\\', 'ram')
 		);
 
 	foreach ($dataPath as $dataK => $val) {
@@ -68,7 +68,9 @@
 			echo "Table MyGuests created successfully<br>";
 		} else {
 			echo "Error creating table: " . $mysqli->error."<br>";
-			echo $q."<br><br>";
+			echo "<pre>";
+			echo $q;
+			echo "</pre>";
 		}
 		// echo '<pre style="color: #f00;">';
 		// print_r($max[1]);
@@ -78,20 +80,10 @@
 	function create_table_q($arr, $tblName) {
 		$q = "CREATE TABLE IF NOT EXISTS ".$tblName."(id int unique auto_increment,";
 
-		foreach ($arr[0] as $key => $value) { // fix this xD
-			$k = str_replace(" ", "_", $key);
-			$k = str_replace("-", "_", $k);
-			$k = str_replace("(", "_", $k);
-			$k = str_replace(")", "", $k);
-			$k = str_replace("+", "", $k);
-			$k = str_replace(".", "_", $k);
-			$k = str_replace(",", "_", $k);
-			$k = str_replace("/", "_", $k);
-			$k = str_replace("\\", "_", $k);
-			$k = str_replace("\"", "_", $k);
-			$q .= $k." TEXT,";
+		foreach ($arr[0] as $key => $value) {
+			$q .= "`".$key."`"." TEXT,\n";
 		}
-		$q = substr($q, 0, -1).")";
+		$q = substr($q, 0, -2).")";
 		return $q;
 	}
 
