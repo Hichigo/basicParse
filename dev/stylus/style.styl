@@ -1,0 +1,128 @@
+$yaColor = #fc0
+$btnColor = #09f
+
+html, body
+	padding 0
+	margin 0
+	font-family 'Roboto', sans-serif
+
+.wrap
+	height auto
+	width 1024px
+	margin 50px auto
+
+.request
+	height auto
+	list-style none
+	margin 0 0 70px 0
+	padding 0
+	display flex
+	flex-flow row wrap
+	>li
+		width calc(33.333% - 20px)
+		height 250px
+		margin 10px
+		background #fff
+		box-shadow 0 2px 5px rgba(0,0,0,.5)
+		display flex
+		flex-flow column nowrap
+
+&.request-card-head
+	height auto
+	border-bottom 1px solid #f90
+	>h3
+		margin-top 5px
+		margin-bottom 5px
+		padding-left 10px
+
+&.request-card-body
+	flex-grow 1
+
+
+.list-details
+	display flex
+	flex-flow column nowrap
+	list-style none
+	margin 0
+	padding 0
+
+.item
+	display flex
+	flex-flow row nowrap
+	height 200px
+	border-radius 3px
+	position relative
+	background #fff
+	box-shadow 0 2px 5px rgba(0,0,0,.5)
+	// transition all .4s linear
+
+.item:not(:last-child)
+	margin-bottom 70px
+
+.auto-height
+	height auto
+
+.image
+	display flex
+	width 200px
+	height auto
+	border-right 1px solid #f90
+	box-sizing border-box
+	>img
+		margin auto
+		width 150px
+		height 150px
+
+.attributes
+	flex-grow 1
+	margin-left 25px
+	padding-bottom 20px
+	position relative
+	overflow hidden
+	&:after
+		content ''
+		display block
+		position absolute
+		width 100%
+		height 50px
+		background linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%)
+		bottom 0
+	>h2
+		color #f90
+		font-weight 400
+
+.auto-height
+	>.attributes
+		&:after
+			display none
+
+round-button(w, h)
+	width w
+	height h
+	position absolute
+	border-radius 50%
+	box-shadow 0 2px 5px rgba(0,0,0,.5)
+
+.round-button
+	round-button(50px, 50px)
+	>a
+		display block
+		width inherit
+		height inherit
+		border-radius inherit
+
+.expand
+	right 25px
+	bottom -25px
+	cursor pointer
+	background $btnColor url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzklEQVRYR+2XUQ7DIAxDl5NtR1lPtvakDCSQECpz7KpdP8Jn1cQvJi3BHgdWSumdw59mtqhpTA2s4p8av6oQEsAg3mqQIGiAibgMQQEAcQnCDeAUpyHcAGOzZqDUP8tNKOWSgorwZQCjEPvZImegA7cBQJXMegTFuR1AiQIgHAgHwoFw4HQH2FOwvY9+4e6z4G8AM+HLBpLbAJBD6Zb3vtya4II90GdwQrjFS24KoA6jpbJ2JRsrpMQlgB8QtLgMsAMhiR8C6CBe3obb68gveme6IdL4wuoAAAAASUVORK5CYII=') no-repeat center
+	&:hover
+		background-color darken($btnColor, 10%)
+
+.into-ya
+	top 25px
+	right -25px
+	background $yaColor url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVRYR+2V4Q2CMBCF6QZuoBvoCm4iG8AE4gawAW6iG+gGuIFOUO81V1JMa5Hk7J9eQkiu19zXd6+gisShEvcvMkBWICsgooDWeqWUes654lIADTXf0lPGQCQBjgQwMMQlpIY0gO3bkhK1D+JfAOh9YzXwHkORYSCP5kxNpKZgZv5M9b2nfkM5PL6oaE9nFwBgmyO3p0Uzr5n5E9U3nvrQyG0ePWDQIRUAQHBNy5QALwI4pAK4muY8AjNzDhjENWEs33+Y0NbDgOuAEWD0djRhzC1L1snAMCY+RG7c+dTTa7ikQWyPB6CjU1e+fdIfogef2h3zhEMSYMfNv/4VpQDS/o5jHnHXRRTIAFmBrMAvCrwBgdeyu3KGr5EAAAAASUVORK5CYII=') no-repeat center
+	&:hover
+		background-color darken($yaColor, 10%)
+

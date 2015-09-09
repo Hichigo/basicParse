@@ -1,318 +1,261 @@
-<script src="parse.js"></script>
-<form action="add.php" method="post">
-  <textarea name="json" rows="20" cols="40" id="send"></textarea>
-  <input type="submit">
-</form>
-<table class="table-params table-no-bordered" id="mystest">
-   <tbody>
-      <tr>
-         <td colspan="2" class="table-part">
-            Общие параметры
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Тип</td>
-         <td>
-            центральный процессор
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Модель</td>
-         <td>
-            Intel Core i7-4770K
-         </td>
-      </tr>
-      <tr class="highlight">
-         <td colspan="2" class="table-part">
-            Основные параметры
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Линейка</td>
-         <td>
-            Intel Core i7
-         </td>
-      </tr>
-      <tr data-state="1" class="highlight">
-         <td>Код процессора</td>
-         <td>
-            i7-4770K
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Сокет</td>
-         <td>
-            LGA 1150
-         </td>
-      </tr>
-      <tr data-state="1" class="highlight">
-         <td>Тип поставки</td>
-         <td>
-            OEM
-         </td>
-      </tr>
-      <tr>
-         <td colspan="2" class="table-part">
-            Ядро и архитектура
-         </td>
-      </tr>
-      <tr data-state="1" class="highlight">
-         <td>Архитектура</td>
-         <td>
-            Haswell
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Ядро</td>
-         <td>
-            Haswell
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Техпроцесс</td>
-         <td>
-            22 нм
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Количество ядер</td>
-         <td>
-            4
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Максимальное число потоков</td>
-         <td>
-            8
-         </td>
-      </tr>
-      <tr data-state="0">
-         <td>Кэш L1 (инструкции)</td>
-         <td>
-            128 кб
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Кэш L1 (данные)</td>
-         <td>
-            128 кб
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Объем кэша L2</td>
-         <td>
-            1024 Кб
-         </td>
-      </tr>
-      <tr data-state="1" class="highlight">
-         <td>Объем кэша L3</td>
-         <td>
-            8192 Кб
-         </td>
-      </tr>
-      <tr>
-         <td colspan="2" class="table-part">
-            Частота и возможность разгона
-         </td>
-      </tr>
-      <tr data-state="1" class="highlight">
-         <td>Базовая частота процессора</td>
-         <td>
-            3500 МГц
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Максимальная частота в турбо режиме</td>
-         <td>
-            3900 МГц
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Множитель</td>
-         <td>
-            35
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Свободный множитель</td>
-         <td>
-            <span class="yes"></span>
-            <span>есть</span>
-         </td>
-      </tr>
-      <tr class="highlight">
-         <td colspan="2" class="table-part">
-            Параметры оперативной памяти
-         </td>
-      </tr>
-      <tr data-state="0">
-         <td>Встроенный контроллер памяти</td>
-         <td>
-            <span class="yes"></span>
-            <span>есть</span>
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Тип памяти</td>
-         <td>
-            DDR3
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Максимально поддерживаемый объем памяти</td>
-         <td>
-            32 Гб
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Количество каналов</td>
-         <td>
-            2
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Минимальная частота оперативной памяти</td>
-         <td>
-            1333 МГц
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Максимальная частота оперативной памяти</td>
-         <td>
-            1600 МГц
-         </td>
-      </tr>
-      <tr data-state="0">
-         <td>Пропускная способность памяти</td>
-         <td>
-            25.6 Гбайт/с
-         </td>
-      </tr>
-      <tr class="highlight">
-         <td colspan="2" class="table-part">
-            Тепловые характеристики
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Тепловыделение (TDP)</td>
-         <td>
-            84 Вт
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Максимальная температура корпуса</td>
-         <td>
-            72.72 °C
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Система охлаждения в комплекте</td>
-         <td>
-            <span class="no"></span>
-            <span>нет</span>
-         </td>
-      </tr>
-      <tr class="highlight">
-         <td colspan="2" class="table-part">
-            Графическое ядро
-         </td>
-      </tr>
-      <tr data-state="1">
-         <td>Интегрированное графическое ядро</td>
-         <td>
-            <span class="yes"></span>
-            <span>есть</span>
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Модель графического процессора</td>
-         <td>
-            Intel HD Graphics 4600
-         </td>
-      </tr>
-      <tr data-state="0">
-         <td>Базовая частота графического ядра</td>
-         <td>
-            350 МГц
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Максимальная частота графического ядра</td>
-         <td>
-            1250 МГц
-         </td>
-      </tr>
-      <tr>
-         <td colspan="2" class="table-part">
-            Шина и контроллеры
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Системная шина</td>
-         <td>
-            DMI
-         </td>
-      </tr>
-      <tr data-state="0">
-         <td>Пропускная способность шины</td>
-         <td>
-            5 GT/s
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Встроенный контроллер PCI Express</td>
-         <td>
-            PCI-E 3.0
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Число линий PCI Express</td>
-         <td>
-            16
-         </td>
-      </tr>
-      <tr class="highlight">
-         <td colspan="2" class="table-part">
-            Команды, инструкции, технологии
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Поддержка 64-битного набора команд</td>
-         <td>
-            EM64T
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Технология Hyper-Threading</td>
-         <td>
-            <span class="yes"></span>
-            <span>есть</span>
-         </td>
-      </tr>
-      <tr data-state="2">
-         <td>Технология виртуализации</td>
-         <td>
-            <span class="yes"></span>
-            <span>есть</span>
-         </td>
-      </tr>
-      <tr data-state="0" class="highlight">
-         <td>Технология повышения частоты процессора</td>
-         <td>
-            Turbo Boost 2.0
-         </td>
-      </tr>
-      <tr data-state="0">
-         <td>Технология энергосбережения</td>
-         <td>
-            Enhanced SpeedStep
-         </td>
-      </tr>
-      <tr data-state="2" class="highlight">
-         <td>Набор инструкций и команд</td>
-         <td>
-            AES, AVX, AVX2, BMI1, BMI2, F16C, FMA3, MMX, SSE, SSE2, SSE3, SSE4, SSE4.1, SSE4.2, SSSE3
-         </td>
-      </tr>
-   </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,300" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="build/css/style.min.css"/>
+  </head>
+  <body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore rem ullam, fugit eaque eum impedit dignissimos eius voluptatem blanditiis, reprehenderit quibusdam explicabo nisi doloremque cumque sint eveniet neque unde enim.</p>
+    <div class="wrap">
+      <div class="request ul">
+        <li>
+          <header class="request-card-head">
+            <h3>Процессор</h3>
+          </header>
+          <section class="request-card-body">
+            <ul>
+              <li>Тип процессора
+                <select>
+                  <option>Любой</option>
+                  <option>Intel</option>
+                  <option>AMD</option>
+                </select>
+              </li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Видеокарта</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Материнская плата</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Оперативная память</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Жесткий диск</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Блок питания</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Системный блок</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>Охлаждение для процессора</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+        <li>
+          <header class="request-card-head">
+            <h3>процессор</h3>
+          </header>
+          <section class="request-card-body"></section>
+        </li>
+      </div>
+      <ul class="list-details">
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/1"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/2"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/3"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/4"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/5"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/6"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/7"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/8"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+        <li class="item">
+          <div class="image"><img src="http://lorempixel.com/150/150/cats/9"/></div>
+          <div class="attributes">
+            <h2>процессор</h2>
+            <ul>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+              <li>description</li>
+            </ul>
+          </div>
+          <div class="expand round-button expand-js"></div>
+          <div class="into-ya round-button"><a href="#"></a></div>
+        </li>
+      </ul>
+    </div>
+    <div class="footer">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, maiores!</p>
+    </div>
+    <script src="build/js/script.min.js"></script>
+  </body>
+</html>
