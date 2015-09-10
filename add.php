@@ -20,6 +20,7 @@
 			Array('.\\', 'ram')
 		);
 
+// START MAIN LOOP
 	foreach ($dataPath as $dataK => $val) {
 	
 		$path = $val[0].$val[1];
@@ -57,8 +58,6 @@
 			echo "</pre>";
 		}
 
-		
-
 		foreach ($queryes as $index => $mass) { //добавление в бд
 			foreach ($mass as $key => $value) {
 				if ($mysqli->query($value) === TRUE) {
@@ -72,12 +71,14 @@
 			}
 		}
 	}
+// END MAIN LOOP
+
 
 	function create_table_q($arr, $tblName, $msql) {
 		$q = "CREATE TABLE IF NOT EXISTS ".$tblName."(id int unique auto_increment,"; //
 
 		foreach ($arr as $key => $value) {
-			$q .= "`".str_replace("\"", "", $value)."`"." TEXT,"; // кавычки в названиях колонок удалить (из за этого была ошибка)
+			$q .= "`".str_replace("\"", "'", $value)."`"." TEXT,"; // кавычки в названиях колонок удалить (из за этого была ошибка)
 		}
 		$q = substr($q, 0, -1).")";
 		return $q;
@@ -89,7 +90,7 @@
 			$keys = "(";
 			$vals = "VALUES(";
 			foreach ($value as $k => $v) {
-				$keys .= "`".str_replace("\"", "", $k)."`,"; // кавычки в названиях колонок удалить (из за этого была ошибка)
+				$keys .= "`".str_replace("\"", "'", $k)."`,"; // кавычки в названиях колонок удалить (из за этого была ошибка)
 				$vals .= "'".$msql->real_escape_string($v)."',";
 			}
 			$keys = substr($keys, 0, -1).")";
